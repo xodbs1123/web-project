@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant List</title>
+    <link rel="stylesheet" href="/static/style_list.css">
+</head>
+<body>
+     <!-- 헤더 섹션 -->
+     <header class="header">
+        <div class="main_header">
+            <a href="/">
+                <img src = 'static/Logo.png' class="img_logo">
+            </a>
+             <!-- 검색 폼 추가 -->
+             <form action="/list" method="POST" class="search_box" id="searchForm">
+                <!-- 검색어 입력 필드에 이전에 입력한 값을 표시 -->
+                <input type="text" name="query" placeholder="검색어 입력" maxlength="225" tabindex="1" value="{{ query|default('') }}" />
+                <button type="submit" tabindex="2">검색</button>
+            </form>
+            <!-- '가게 추가하기' 버튼 -->
+            <button class="btn add-button" onclick="location.href='/add'">
+                가게 추가하기
+            </button>
+        </div>
+    </header>
+    <div class="container">
+        <main>
+            
+            <!-- 정렬 버튼 -->
+            <div class="search_title">
+                <div>
+                    <h2>검색 결과</h2>
+                </div>
+                <div >
+                    <button class="sort-button sort-asc-button" onclick="sortResults('asc')">오름차순 정렬</button>
+                    <button class="sort-button sort-desc-button" onclick="sortResults('desc')">내림차순 정렬</button>
+                </div>
+                    
+            </div>
+           
+            <!-- 검색 결과 목록 -->
+
+        <div>
+            <ul class="content_detail">
+                {% for item in results %}
+                <li class="content_item">
+                    <div class="content_item_inner">
+                        <a href="/list.html">
+                            <figure>
+                                <figcaption>
+                                    <div class="content_info">
+                                        <!-- 이미지 대신 REST 정보 표시 -->
+                                        <a href="{{ url_for('detail', rest_name=item.REST_Name) }}">
+                                            <figure>
+                                                <!-- 음식 종류에 따라 이미지를 표시합니다. -->
+                                                {% if item.REST_Type == '한식' %}
+                                                <div class="content_item_img">
+                                                    <img src="static/hansik.jpeg" alt="한식 이미지">
+                                                </div>
+                                                {% elif item.REST_Type == '일식' %}
+                                                <div class="content_item_img">
+                                                    <img src="static/ilsik.jpeg" alt="일식 이미지">
+                                                </div>
+                                                {% elif item.REST_Type == '중식' %}
+                                                <div class="content_item_img">
+                                                    <img src="static/jungsik.jpeg" alt="중식 이미지">
+                                                </div>
+                                                {% elif item.REST_Type == '경양식' %}
+                                                <div class="content_item_img">
+                                                    <img src="static/yangsik.jpeg" alt="경양식 이미지">
+                                                </div>
+                                                {% elif item.REST_Type == '분식' %}
+                                                <div class="content_item_img">
+                                                    <img src="static/bunsik.jpeg" alt="분식 이미지">
+                                                </div>
+                                                {% endif %}
+                                                <figcaption>
+                                            <span>{{ item.REST_Name }}</span>
+                                        </a>
+                                        <p class="content_address">주소 : {{ item.REST_Address }}</p>
+                                        <p class="content_address">전화번호 : {{ item.Tel }}</p>
+                                        
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>             
+       
+    </div>
+</main>
+<footer class="footer">
+    <span class="logo_text">양.많.다</span>
+    <P class="footer_text">Find your Best Restaurant</P>
+    <div class="footer_copy">Copyright 2023 양.많.다., Inc. Terms & Privacy</div>
+</footer>
+    <script>
+        let sortOrder = 'asc'; // 초기 정렬 순서
+
+        // 페이지 로드 시 기본 정렬 (오름차순)
+        window.onload = function() {
+            sortResults(sortOrder);
+            // 페이지 로드 시 저장된 검색어를 검색 폼에 설정
+            const searchForm = document.getElementById('searchForm');
+            const query = localStorage.getItem('searchQuery');
+            if (query) {
+                searchForm.querySelector('input[name="query"]').value = query;
+            }
+        }
+
+        const searchForm = document.getElementById('searchForm');
+        searchForm.addEventListener('submit', function(event) {
+            // 검색 폼 제출 시 검색어를 로컬 스토리지에 저장
+            const queryInput = searchForm.querySelector('input[name="query"]');
+            localStorage.setItem('searchQuery', queryInput.value);
+        });
+
+        function sortResults(order) {
+            const contentDetail = document.querySelector('.content_detail');
+            const items = Array.from(contentDetail.querySelectorAll('.content_item'));
+
+            items.sort((a, b) => {
+                const nameA = a.querySelector('.content_info span').textContent;
+                const nameB = b.querySelector('.content_info span').textContent;
+                if (order === 'asc') {
+                    return nameA.localeCompare(nameB);
+                } else {
+                    return nameB.localeCompare(nameA);
+                }
+            });
+
+            // 정렬된 아이템을 다시 목록에 추가
+            contentDetail.innerHTML = '';
+            for (const item of items) {
+                contentDetail.appendChild(item);
+            }
+
+            // 현재 정렬 순서 업데이트
+            sortOrder = order;
+        }
+    </script>
+</body>
+</html>
+

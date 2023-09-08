@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- 브라우저 호환성 및 화면 크기 설정 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 외부 스타일시트 링크 -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    <!-- 스타일 추가 (레전드가 화면에 보이지 않게 함) -->
+    <style>
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px 1px 1px 1px);
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <header class="header">
+        <a href="/">
+            <img src = 'static/Logo.png' class="img_logo">
+        </a>
+        <button class="btn" onclick="location.href='/add'">
+            가게추가하기
+        </button> 
+    </header>
+    
+    <!-- 메인 섹션 -->
+    <main>
+        <div>
+            <div class="maintitle">
+                <h2>양재역 맛집 리스트</h2>
+            </div>
+            <!-- 검색 바 섹션 -->
+            <div class="searchbar">
+                <!-- 검색 폼 추가 -->
+                <form action="/list" method="POST" class="search_box" id="searchForm">
+                    <fieldset>
+                        <!-- 레전드 엘리먼트 (접근성을 위해 화면에서 보이지 않게 함) -->
+                        <legend class="visually-hidden">검색</legend>
+                        <div class="search_box">
+                            <input type="text" name="query" placeholder="검색어 입력" maxlength="225" tabindex="1" />
+                            <button type="submit" tabindex="2">
+                                검색
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <!-- 컨텐츠 섹션 -->
+        <div class="content">
+            <div>
+                <a href="/list" action="한식" class="content_btn" id="koreanFoodButton" >
+                    <img class="content_korea img" src="static/korea.jpg" width="250" height="220" alt="한식 이미지" ></br>                
+                </a>
+            </div>
+            <div>
+                <a href="/list" action="중식" class="content_btn" id="chinaFoodButton">
+                    <img class="content_china img" src="static/china.jpg" width="250" height="220" alt="중식 이미지"></br>                    
+                </a>
+            </div> 
+            <div>
+                <a href="/list" action="일식" class="content_btn" id="japanFoodButton">
+                    <img class="content_jpan img" src="static/japan.jpg" width="250" height="220" alt="일식 이미지"></br>                    
+                </a>
+            </div> 
+            <div>
+                <a href="/list" action="분식" class="content_btn" id="bunsikFoodButton">                    
+                    <img class="content_bun img" src="static/bun.jpg" width="250" height="220" alt="분식 이미지"></br>                    
+                </a>
+            </div> 
+            <div>
+                <a href="/list" action="경양식" class="content_btn" id="jungsikFoodButton">                    
+                    <img class="content_jung img" src="static/jung.jpg" width="250" height="220" alt="경양식 이미지"></br>            
+                </a>
+            </div>     
+        </div>
+    </main>
+    
+    <!-- 푸터 섹션 -->
+    <footer class="footer">
+        <span class="logo_text">양.많.다</span>
+        <P class="footer_text">Find your Best Restaurant</P>
+        <div class="footer_copy">Copyright 2023 양.많.다., Inc. Terms & Privacy</div>
+    </footer>
+    <script>
+       
+        const foodButtons = ['koreanFoodButton', 'chinaFoodButton', 'japanFoodButton', 'bunsikFoodButton', 'jungsikFoodButton'];
+        const foodNames = ['한식', '중식', '일식', '분식', '경양식'];
+        
+        foodButtons.forEach((buttonId, index) => {
+            const button = document.getElementById(buttonId);
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                const searchForm = document.getElementById('searchForm');
+                const queryInput = searchForm.querySelector('input[name="query"]');
+                queryInput.value = foodNames[index];
+                localStorage.setItem('searchQuery', queryInput.value);
+                searchForm.submit();
+            });
+        });
+        
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            localStorage.setItem('searchQuery', event.target.querySelector('input[name="query"]').value);
+        });
+        
+    </script>
+</body>
+</html>

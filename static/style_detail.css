@@ -1,0 +1,230 @@
+/* Reset some default browser styles */
+body, h1, h2, h3, p, ul, li, table {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color and font for the whole page */
+body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the header with a background color, padding, and center the logo */
+.main_header {
+    margin: auto;
+    width: flex;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    border-bottom: 2px solid #FF7200;
+}
+
+/* Style the logo image */
+.img_logo {
+    width: 100px;
+    height: 60px;
+    position: relative;
+    left: 10px;
+    top: 5px;
+}
+
+/* Center the content in the main section */
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Style the restaurant name */
+.detail_item {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 3px #FF7200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.detail_left{
+    text-align: right;
+    padding-right: 20px;    
+    float:left;
+    width:40%;
+}
+.detail_left span {
+    font-size: 24px;
+    font-weight: bold;
+}
+.detail_right{
+    width: 60%;
+    float: right;
+    padding-left: 10px;
+    border-left:2px solid #FF7200;
+}
+/* Style the restaurant info table */
+.info {
+    width: 100%;
+    margin-top: 10px;
+}
+.info th {
+    text-align: left;
+    font-weight: bold;
+}
+.info td {
+    text-align: left;
+}
+/* Style the menu section */
+.menu {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 3px #FF7200;
+    text-align: left;
+    margin-bottom: 20px; /* Add margin to separate menu and comments */
+}
+.menu h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.menu ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.menu li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+/* Style the comments section */
+.comments {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 3px #FF7200;
+    text-align: left;
+}
+.comments h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.comments ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.comments li {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+/* Style the comment form */
+.comments form {
+    margin-top: 20px;
+}
+.comments input[type="text"],
+.comments textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #FF7200;
+    border:none;
+}
+.comments button[type="submit"] {
+    background-color: #FF7200;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* 댓글 목록 스타일 */
+.comments li {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #FF7200;
+}
+.comments li span {
+    font-weight: bold;
+    margin-right: 10px;
+}
+.comments li p {
+    margin: 0;
+}
+/* 스타 평점 표시 스타일 */
+.star-rating {
+    text-align: left;
+    margin-bottom: 10px;
+}
+.star-rating .star {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+/* 댓글 작성 폼 스타일 */
+#rating-form {
+    margin-top: 20px;
+}
+#rating-form .star-rating {
+    text-align: left;
+    margin-bottom: 10px;
+}
+#rating-form .star-rating .star {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+#rating-form .star-rating .star.active {
+    color: gold; /* 선택된 별표의 색상을 골드로 변경 */
+}
+#rating-form textarea {
+    width: 98%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    resize: vertical;
+    min-height: 100px;
+    box-shadow: 0 0 3px #FF7200;
+    border:none;
+}
+#rating-form button[type="댓글 작성"] {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #FF7200;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#rating-form button[type="댓글 작성"]:hover {
+    background-color: #FF7200;
+}
+
+/* Style the footer */
+.footer {
+    text-align: center;
+    /* margin-top: 40px; */
+    padding: 20px 0;
+    background-color: #FF7200;
+    color: white;
+    line-height: 8px;
+    height: 50px;
+}
+.logo_text {
+    font-size: 16px;
+}
+.footer_text {
+    font-size: 14px;
+    margin-top: 10px;
+}
+.footer_copy {
+    font-size: 12px;
+    margin-top: 10px;
+}

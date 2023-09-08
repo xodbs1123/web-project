@@ -49,8 +49,8 @@ $ pip install -r requirements.txt
 ### 기술 스택 ###
 #### Environment
 
-<img src="https://github.com/Inc-Team-Project/recommend-restaurant/assets/61976898/8b88210b-072f-4d4d-8cd7-f2b7335178ff.png" heigh="80" width="80"/> 
-&nbsp; &nbsp;
+![image (1)](https://github.com/xodbs1123/web-project/assets/61976898/12adbdab-a438-462e-8f3e-a5dd091e6fe9)
+
 
 <img src="https://github.com/Inc-Team-Project/recommend-restaurant/assets/61976898/e570758c-6f35-40de-8be9-c15dde31456c.png" height="80" width="150"/>
 &nbsp; &nbsp;
